@@ -82,4 +82,5 @@ Route::get('/kategori/{id}', function ($id) {
 
 Route::get('/controller/hello', [HelloController::class, 'hello']);
 
+Route::get('/controller/hello/request', [HelloController::class, 'helloRequest']);
 Route::get('/controller/hello/{name}', [HelloController::class, 'helloName']);
