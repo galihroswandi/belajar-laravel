@@ -44,4 +44,17 @@ class InputController extends Controller
         $input = $request->query();
         return json_encode($input);
     }
+
+    public function inputType(Request $request): string
+    {
+        $name = $request->input('name');
+        $merried = $request->boolean('merried');
+        $birth_date = $request->date('birth_date', 'Y-m-d');
+
+        return json_encode([
+            "name" => $name,
+            "merried" => $merried,
+            "birth_date" => $birth_date->format('Y-m-d'),
+        ]);
+    }
 }

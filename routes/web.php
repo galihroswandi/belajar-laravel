@@ -96,3 +96,4 @@ Route::post('/controller/getAllInputWhereName', [InputController::class, 'getAll
 Route::get('/controller/getQueryParam', [InputController::class, 'getQueryParam']);
 
 Route::get('/controller/getAllQueryParam', [InputController::class, 'getAllQueryParam']);
+Route::post('/controller/inputType', [InputController::class, 'inputType']);

@@ -70,4 +70,13 @@ class InputControllerTest extends TestCase
     {
         $this->get('/controller/getAllQueryParam?name=Product 1?price=1000')->assertSeeText('name')->assertSeeText('price');
     }
+
+    public function testInputType()
+    {
+        $this->post('/controller/inputType', [
+            "name" => "Jhon Doe",
+            "merried" => true,
+            "birth_date" => "2000-01-01"
+        ])->assertSeeText('name')->assertSeeText('merried')->assertSeeText('birth_date');
+    }
 }
