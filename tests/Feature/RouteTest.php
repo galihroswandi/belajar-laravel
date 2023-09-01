@@ -42,4 +42,31 @@ class RouteTest extends TestCase
         $this->get('/hello/Jhon/ages/20')
             ->assertSeeText('Hello my name is Jhon and my age is 20');
     }
+
+    public function testRouteParameterWithRegex()
+    {
+        $this->get('/category/1')
+            ->assertSeeText('Category : 1');
+
+        $this->get('/category/xxx')
+            ->assertSeeText('404 Not Found');
+    }
+
+    public function testRouteParameterOptional()
+    {
+        $this->get('/users/jhon')
+            ->assertSeeText('User jhon');
+
+        $this->get('/users')
+            ->assertSeeText('User 404');
+    }
+
+    public function testRouteConflict()
+    {
+        $this->get('/conflict/user1')
+            ->assertSeeText('User Conflict user1');
+
+        $this->get('/conflict/jhondoe')
+            ->assertSeeText('User Conflict Jhondoe 123');
+    }
 }

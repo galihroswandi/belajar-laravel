@@ -47,3 +47,23 @@ Route::get('/hello/{name}', function ($name) {
 Route::get('/hello/{name}/ages/{age}', function ($name, $age) {
     return "Hello my name is $name and my age is $age";
 });
+
+// !ROUTE_PARAMETER WITH REGEX
+Route::get('/category/{id}', function ($id) {
+    return "Category : $id";
+})->where('id', '[0-9]+');
+
+// !ROUTE_PARAMETER OPTIONAL
+Route::get('/users/{user?}', function ($user = '404') {
+    return "User $user";
+});
+
+// !ROUTE_PARAMETER CONFLICT
+// ===> laravel akan mengambil yang pertama kali didefinisikan dari atas ke bawah
+Route::get('/conflict/jhondoe', function () {
+    return "User Conflict Jhondoe 123";
+});
+
+Route::get('/conflict/{name}', function ($name) {
+    return "User Conflict $name";
+});
