@@ -42,21 +42,21 @@ Route::view('/hello-world', 'hello.world', ["name" => "Jhon Doe"]);
 // !ROUTE_PARAMETER
 Route::get('/hello/{name}', function ($name) {
     return "Hello my name is $name";
-});
+})->name('show.name');
 
 Route::get('/hello/{name}/ages/{age}', function ($name, $age) {
     return "Hello my name is $name and my age is $age";
-});
+})->name("show.name.age");
 
 // !ROUTE_PARAMETER WITH REGEX
 Route::get('/category/{id}', function ($id) {
     return "Category : $id";
-})->where('id', '[0-9]+');
+})->where('id', '[0-9]+')->name('category');
 
 // !ROUTE_PARAMETER OPTIONAL
 Route::get('/users/{user?}', function ($user = '404') {
     return "User $user";
-});
+})->name('users.name');
 
 // !ROUTE_PARAMETER CONFLICT
 // ===> laravel akan mengambil yang pertama kali didefinisikan dari atas ke bawah
@@ -66,4 +66,14 @@ Route::get('/conflict/jhondoe', function () {
 
 Route::get('/conflict/{name}', function ($name) {
     return "User Conflict $name";
+});
+
+// !ROUTE_NAMED
+Route::get('/nama/{nama}', function ($nama) {
+    $link = route('show.name', ['name' => $nama]);
+    return "Link to see : $link";
+});
+
+Route::get('/kategori/{id}', function ($id) {
+    return redirect()->route('category', ["id" => $id]);
 });

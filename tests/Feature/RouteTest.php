@@ -69,4 +69,13 @@ class RouteTest extends TestCase
         $this->get('/conflict/jhondoe')
             ->assertSeeText('User Conflict Jhondoe 123');
     }
+
+    public function testRouteNamed()
+    {
+        $this->get('/nama/Jhon')
+            ->assertSeeText('Link to see : http://localhost/hello/Jhon');
+
+        $this->get('/kategori/5')
+            ->assertRedirect('/category/5');
+    }
 }
