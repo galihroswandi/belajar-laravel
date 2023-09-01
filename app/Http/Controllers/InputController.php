@@ -57,4 +57,30 @@ class InputController extends Controller
             "birth_date" => $birth_date->format('Y-m-d'),
         ]);
     }
+
+    public function inputOnly(Request $request): string // <== input only berarti yang diambil hanya yang ada di onlynya saja
+    {
+        $name = $request->only(['name.first', 'name.last']);
+        return json_encode($name);
+    }
+
+    public function inputExcept(Request $request): string // <== input except berarti yang diambil semua kecuali yang ada di exceptnya
+    {
+        $account = $request->except(['admin']);
+        return json_encode($account);
+    }
+
+    public function inputMerge(Request $request): string
+    {
+        // $account = $request->mergeIfMissing([ // <== mergeIfMissing berarti jika tidak ada maka akan di timpa
+        //     "admin" => false
+        // ]);
+        $request->merge([
+            // <== merge berarti jika ada pun maka akan di timpa untuk nilainya
+            "admin" => false
+        ]);
+
+        $account = $request->input();
+        return json_encode($account);
+    }
 }

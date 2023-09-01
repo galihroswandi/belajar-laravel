@@ -97,3 +97,8 @@ Route::get('/controller/getQueryParam', [InputController::class, 'getQueryParam'
 
 Route::get('/controller/getAllQueryParam', [InputController::class, 'getAllQueryParam']);
 Route::post('/controller/inputType', [InputController::class, 'inputType']);
+
+Route::post('/controller/inputOnly', [InputController::class, 'inputOnly']);
+Route::post('/controller/inputExcept', [InputController::class, 'inputExcept']);
+
+Route::post('/controller/inputMerge', [InputController::class, "inputMerge"]);
