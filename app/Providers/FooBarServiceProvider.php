@@ -23,7 +23,7 @@ class FooBarServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function register()
     {
-        echo "Hello Service Provider";
+        echo "FoobarServiceProvider registered";
         $this->app->singleton(Foo::class, function ($app) {
             return new Foo();
         });
@@ -42,8 +42,8 @@ class FooBarServiceProvider extends ServiceProvider implements DeferrableProvide
         //
     }
 
-    // public function provides(): array
-    // {
-    //     return [HelloServiceInterface::class, Foo::class, Bar::class];
-    // }
+    public function provides(): array
+    {
+        return [HelloServiceInterface::class, Foo::class, Bar::class];
+    }
 }
