@@ -37,3 +37,13 @@ Route::get('/hello-again', function () {
 
 // !NESTED
 Route::view('/hello-world', 'hello.world', ["name" => "Jhon Doe"]);
+
+
+// !ROUTE_PARAMETER
+Route::get('/hello/{name}', function ($name) {
+    return "Hello my name is $name";
+});
+
+Route::get('/hello/{name}/ages/{age}', function ($name, $age) {
+    return "Hello my name is $name and my age is $age";
+});
