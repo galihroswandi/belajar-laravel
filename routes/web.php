@@ -21,8 +21,19 @@ Route::get('/testing', function () {
     return "Hello Jhon Doe For Testing...";
 });
 
+
 Route::redirect('/test', '/testing');
 
 Route::fallback(function () {
     return '404 Not Found';
 });
+
+
+Route::view('/hello', 'hello', ['name' => 'Jhon Doe']);
+
+Route::get('/hello-again', function () {
+    return view('hello', ['name' => 'Jhon Doe']);
+});
+
+// !NESTED
+Route::view('/hello-world', 'hello.world', ["name" => "Jhon Doe"]);
