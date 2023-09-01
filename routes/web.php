@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,3 +78,8 @@ Route::get('/nama/{nama}', function ($nama) {
 Route::get('/kategori/{id}', function ($id) {
     return redirect()->route('category', ["id" => $id]);
 });
+
+
+Route::get('/controller/hello', [HelloController::class, 'hello']);
+
+Route::get('/controller/hello/{name}', [HelloController::class, 'helloName']);
