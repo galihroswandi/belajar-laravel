@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CookieController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
@@ -114,3 +115,5 @@ Route::get('/response/type/json', [ResponseController::class, 'resJson']);
 
 Route::get('/response/type/file', [ResponseController::class, 'resFile']);
 Route::get('/response/type/download', [ResponseController::class, 'resDownload']);
+
+Route::get('/response/cookie', [CookieController::class, 'responseCookie']);
