@@ -116,4 +116,5 @@ Route::get('/response/type/json', [ResponseController::class, 'resJson']);
 Route::get('/response/type/file', [ResponseController::class, 'resFile']);
 Route::get('/response/type/download', [ResponseController::class, 'resDownload']);
 
-Route::get('/response/cookie', [CookieController::class, 'responseCookie']);
+Route::get('/response/cookie/set', [CookieController::class, 'createCookie']);
+Route::get('/response/cookie/get', [CookieController::class, 'getCookie']);
