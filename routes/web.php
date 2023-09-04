@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,3 +104,13 @@ Route::post('/controller/inputOnly', [InputController::class, 'inputOnly']);
 Route::post('/controller/inputExcept', [InputController::class, 'inputExcept']);
 
 Route::post('/controller/inputMerge', [InputController::class, "inputMerge"]);
+Route::post('/file/upload', [FileController::class, 'uploadFile']);
+
+Route::get('/cek/response', [ResponseController::class, 'res']);
+Route::get('/cek/response-header', [ResponseController::class, 'resHeader']);
+
+Route::get('/response/type/view', [ResponseController::class, 'resView']);
+Route::get('/response/type/json', [ResponseController::class, 'resJson']);
+
+Route::get('/response/type/file', [ResponseController::class, 'resFile']);
+Route::get('/response/type/download', [ResponseController::class, 'resDownload']);
