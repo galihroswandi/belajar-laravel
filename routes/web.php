@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CookieController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\RedirectController;
@@ -137,3 +138,6 @@ Route::get('/response/middleware/contoh', function () {
 Route::get('/middleware/group', function () {return "Ok";})->middleware('sample');
 Route::get('/middleware/param', function(){return "Ok";})->middleware('sampleParam:Key_123,401');
 Route::get('/middleware/param/group', function(){return "Ok";})->middleware('exParam');
+
+Route::get('/form', [FormController::class, 'getView']);
+Route::post('/form', [FormController::class, 'submitToken']);
