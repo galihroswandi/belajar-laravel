@@ -4,6 +4,7 @@ use App\Http\Controllers\CookieController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
@@ -119,3 +120,10 @@ Route::get('/response/type/download', [ResponseController::class, 'resDownload']
 Route::get('/response/cookie/set', [CookieController::class, 'createCookie']);
 Route::get('/response/cookie/get', [CookieController::class, 'getCookie']);
 Route::get('/response/cookie/clear', [CookieController::class, 'clearCookie']);
+
+Route::get('/response/redirect/from', [RedirectController::class, 'redirectFrom']);
+Route::get('/response/redirect/to', [RedirectController::class, 'redirectTo']);
+Route::get('/response/redirect/name', [RedirectController::class, 'redirectName']);
+Route::get('/response/redirect/name/{name}', [RedirectController::class, 'redirectHello'])->name('hello-response');
+Route::get('/response/redirect/action', [RedirectController::class, 'redirectAction']);
+Route::get('/response/redirect/away', [RedirectController::class, 'redirectAway']);
