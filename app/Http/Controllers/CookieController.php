@@ -23,4 +23,14 @@ class CookieController extends Controller
                 "isMember" => $request->cookie('Is-Member', 'false'),
             ]);
     }
+
+    public function clearCookie(Request $request): JsonResponse
+    {
+        return response()
+            ->json([
+                "status" => "Ok",
+            ])
+            ->withoutCookie('User-Id')
+            ->withoutCookie('Is-Member');
+    }
 }

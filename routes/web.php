@@ -118,3 +118,4 @@ Route::get('/response/type/download', [ResponseController::class, 'resDownload']
 
 Route::get('/response/cookie/set', [CookieController::class, 'createCookie']);
 Route::get('/response/cookie/get', [CookieController::class, 'getCookie']);
+Route::get('/response/cookie/clear', [CookieController::class, 'clearCookie']);
