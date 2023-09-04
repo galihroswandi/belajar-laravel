@@ -115,29 +115,36 @@ Route::post('/file/upload', [FileController::class, 'uploadFile'])->withoutMiddl
 Route::get('/cek/response', [ResponseController::class, 'res']);
 Route::get('/cek/response-header', [ResponseController::class, 'resHeader']);
 
-Route::get('/response/type/view', [ResponseController::class, 'resView']);
-Route::get('/response/type/json', [ResponseController::class, 'resJson']);
+Route::prefix('/response/type')->group(function () {
+    Route::get('/view', [ResponseController::class, 'resView']);
+    Route::get('/json', [ResponseController::class, 'resJson']);
+    Route::get('/file', [ResponseController::class, 'resFile']);
+    Route::get('/download', [ResponseController::class, 'resDownload']);
+});
 
-Route::get('/response/type/file', [ResponseController::class, 'resFile']);
-Route::get('/response/type/download', [ResponseController::class, 'resDownload']);
+Route::controller(CookieController::class)->group(function(){
+    Route::get('/response/cookie/set', 'createCookie');
+    Route::get('/response/cookie/get', 'getCookie');
+    Route::get('/response/cookie/clear', 'clearCookie');
+});
 
-Route::get('/response/cookie/set', [CookieController::class, 'createCookie']);
-Route::get('/response/cookie/get', [CookieController::class, 'getCookie']);
-Route::get('/response/cookie/clear', [CookieController::class, 'clearCookie']);
-
-Route::get('/response/redirect/from', [RedirectController::class, 'redirectFrom']);
-Route::get('/response/redirect/to', [RedirectController::class, 'redirectTo']);
-Route::get('/response/redirect/name', [RedirectController::class, 'redirectName']);
-Route::get('/response/redirect/name/{name}', [RedirectController::class, 'redirectHello'])->name('hello-response');
-Route::get('/response/redirect/action', [RedirectController::class, 'redirectAction']);
-Route::get('/response/redirect/away', [RedirectController::class, 'redirectAway']);
+Route::controller(RedirectController::class)->prefix('/response/redirect')->group(function(){
+    Route::get('/from', [RedirectController::class, 'redirectFrom']);
+    Route::get('/to', [RedirectController::class, 'redirectTo']);
+    Route::get('/name', [RedirectController::class, 'redirectName']);
+    Route::get('/name/{name}', [RedirectController::class, 'redirectHello'])->name('hello-response');
+    Route::get('/action', [RedirectController::class, 'redirectAction']);
+    Route::get('/away', [RedirectController::class, 'redirectAway']);
+});
 
 Route::get('/response/middleware/contoh', function () {
     return "Ok";
 })->middleware('contoh');
 Route::get('/middleware/group', function () {return "Ok";})->middleware('sample');
-Route::get('/middleware/param', function(){return "Ok";})->middleware('sampleParam:Key_123,401');
-Route::get('/middleware/param/group', function(){return "Ok";})->middleware('exParam');
+Route::middleware('exParam')->group(function() {
+    Route::get('/middleware/param', function(){return "Ok";});
+    Route::get('/middleware/param/group', function(){return "Ok";});
+});
 
 Route::get('/form', [FormController::class, 'getView']);
 Route::post('/form', [FormController::class, 'submitToken']);

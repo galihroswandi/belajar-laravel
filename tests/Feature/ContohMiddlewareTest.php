@@ -51,7 +51,7 @@ class ContohMiddlewareTest extends TestCase
 
     public function testParamMiddlewareValid()
     {
-        $this->withHeader('API_KEY', 'Key_123')
+        $this->withHeader('API_KEY', 'KEY_654')
         ->get('/middleware/param')
         ->assertStatus(200)
         ->assertSeeText('Ok');
