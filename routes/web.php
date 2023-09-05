@@ -7,6 +7,7 @@ use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\SessionController;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
@@ -122,13 +123,13 @@ Route::prefix('/response/type')->group(function () {
     Route::get('/download', [ResponseController::class, 'resDownload']);
 });
 
-Route::controller(CookieController::class)->group(function(){
+Route::controller(CookieController::class)->group(function () {
     Route::get('/response/cookie/set', 'createCookie');
     Route::get('/response/cookie/get', 'getCookie');
     Route::get('/response/cookie/clear', 'clearCookie');
 });
 
-Route::controller(RedirectController::class)->prefix('/response/redirect')->group(function(){
+Route::controller(RedirectController::class)->prefix('/response/redirect')->group(function () {
     Route::get('/from', [RedirectController::class, 'redirectFrom']);
     Route::get('/to', [RedirectController::class, 'redirectTo']);
     Route::get('/name', [RedirectController::class, 'redirectName']);
@@ -140,11 +141,20 @@ Route::controller(RedirectController::class)->prefix('/response/redirect')->grou
 Route::get('/response/middleware/contoh', function () {
     return "Ok";
 })->middleware('contoh');
-Route::get('/middleware/group', function () {return "Ok";})->middleware('sample');
-Route::middleware('exParam')->group(function() {
-    Route::get('/middleware/param', function(){return "Ok";});
-    Route::get('/middleware/param/group', function(){return "Ok";});
+Route::get('/middleware/group', function () {
+    return "Ok";
+})->middleware('sample');
+Route::middleware('exParam')->group(function () {
+    Route::get('/middleware/param', function () {
+        return "Ok";
+    });
+    Route::get('/middleware/param/group', function () {
+        return "Ok";
+    });
 });
 
 Route::get('/form', [FormController::class, 'getView']);
 Route::post('/form', [FormController::class, 'submitToken']);
+
+Route::get('/session/create', [SessionController::class, 'createSession']);
+Route::get('/session/get', [SessionController::class, 'getSession']);
